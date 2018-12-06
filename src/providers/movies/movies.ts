@@ -10,8 +10,15 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class MoviesProvider {
 
+  private apikey = '76b9cca4';
+
   constructor(public http: HttpClient) {
     console.log('Hello MoviesProvider Provider');
   }
+
+  setProvider() {
+    return this.apikey
+  }
+
 
 }

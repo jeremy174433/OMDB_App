@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { HttpClient } from "@angular/common/http";
+import { FormControl } from "@angular/forms";
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
-import { FormControl } from "@angular/forms";
 import { MoviePage } from "../movie/movie";
+import { MoviesProvider } from "../../providers/movies/movies";
 
 @Component({
   selector: 'page-home',
@@ -13,25 +14,17 @@ import { MoviePage } from "../movie/movie";
 export class HomePage {
 
   searchApi: string = '';
-
-  private movies = [];
+  apiKey: string = '';
+  movies = [];
   private term = new FormControl();
 
-  constructor(public navCtrl: NavController, private http: HttpClient) {
+  constructor(public navCtrl: NavController, private http: HttpClient, private MoviesProvider: MoviesProvider) {
 
   }
 
-  ngOnInit() {
-    this.term.valueChanges
-    .debounceTime(500)
-    .distinctUntilChanged()
-    .subscribe(searchTerm => {
-      this.http.get(`http://www.omdbapi.com/?apikey=76b9cca4&s=${searchTerm}`)
-      .subscribe((data: Movie) => {
-        console.log(data);
-        this.movies = data.Search;
-      }).closed
-    });
+  getApiKey () {
+    this.apiKey = this.MoviesProvider.setProvider();
+    console.log(this.apiKey)
   }
 
   detailsMovies (movie) {
@@ -40,5 +33,18 @@ export class HomePage {
     });
   }
 
+  ngOnInit() {
+    this.getApiKey();
+    this.term.valueChanges
+    .debounceTime(500)
+    .distinctUntilChanged()
+    .subscribe(searchTerm => {
+      this.http.get(`http://www.omdbapi.com/?apikey=` + this.apiKey + `&s=${searchTerm}`)
+      .subscribe((data: Movie) => {
+        console.log(data);
+        this.movies = data.Search;
+      }).closed
+    });
+  }
 
 }

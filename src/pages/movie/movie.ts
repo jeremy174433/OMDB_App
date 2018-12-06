@@ -18,7 +18,6 @@ export class MoviePage {
 
   id: number;
   private moviedetails = [];
-  private ratings = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
   }
