@@ -34,11 +34,11 @@ export class HomePage {
     });
   }
 
-  // detailsMovies (movie) {
-  //   this.navCtrl.push(MoviePage, {
-  //     id: movie.imdbID
-  //   });
-  // }
+  detailsMovies (movie) {
+    this.navCtrl.push(MoviePage, {
+      id: movie.imdbID
+    });
+  }
 
 
 }

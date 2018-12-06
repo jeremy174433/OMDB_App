@@ -7,12 +7,20 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>movie</ion-title>
+    <ion-title>{{moviedetails.Title}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+  <div>
+    <ion-thumbnail>
+      <img src="{{moviedetails.Poster}}">
+    </ion-thumbnail>
+    <p>{{moviedetails.Plot}}</p>
+    <p>{{moviedetails.Type}}</p>
+  </div>
 
 </ion-content>

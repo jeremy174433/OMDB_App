@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HttpClient } from "@angular/common/http";
 
 /**
  * Generated class for the MoviePage page.
@@ -15,11 +16,24 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MoviePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  id: number;
+  private moviedetails = [];
+  private ratings = [];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MoviePage');
   }
+
+  ngOnInit() {
+    this.http.get('http://www.omdbapi.com/?apikey=76b9cca4&i=' + this.navParams.get('id'))
+      .subscribe((data: MovieDetails[]) => {
+        this.moviedetails = data;
+        console.log(this.moviedetails);
+      });
+  }
+
 
 }
