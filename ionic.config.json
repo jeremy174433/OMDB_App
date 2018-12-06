@@ -1,0 +1,7 @@
+{
+  "name": "OMDB_TP",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
