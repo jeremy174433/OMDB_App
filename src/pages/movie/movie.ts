@@ -14,12 +14,15 @@ import { HttpClient } from "@angular/common/http";
   selector: 'page-movie',
   templateUrl: 'movie.html',
 })
+
 export class MoviePage {
 
   id: number;
-  private moviedetails = [];
+  moviedetails = [];
+  public myAngularxQrCode: string = null;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
+    this.myAngularxQrCode = 'this.moviedetails.Website';
   }
 
   ionViewDidLoad() {

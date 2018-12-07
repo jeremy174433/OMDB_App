@@ -17,10 +17,33 @@
 
   <div>
     <ion-thumbnail>
-      <img src="{{moviedetails.Poster}}">
+      <img src="{{moviedetails.Poster}}" alt="{{moviedetails.Title}}" title="{{moviedetails.Title}}">
     </ion-thumbnail>
-    <p>{{moviedetails.Plot}}</p>
-    <p>{{moviedetails.Type}}</p>
+    <div id="favorite-container">
+      <button ion-fab class="favorite">
+        <ion-icon name="heart-outline"></ion-icon>
+      </button>
+    </div>
+    <p class="description">{{moviedetails.Plot}}</p>
+    <div class="tags">
+        <p>{{moviedetails.Year}}</p>
+        <p>{{moviedetails.Runtime}}</p>
+        <p>{{moviedetails.Type}}</p>
+        <p>{{moviedetails.Genre}}</p>
+    </div>
+    <hr>
+    <div id="QR-code">
+      <div>
+        <p>Scan the QR Code for more informations :</p>
+        <qrcode [qrdata]="myAngularxQrCode" [size]="150" [level]="'M'"></qrcode>
+      </div>
+      <div class="camera">
+          <button ion-button icon-start>
+              <ion-icon name="camera"></ion-icon>
+              Accéder à l'appareil
+          </button>
+      </div>
+    </div>
   </div>
 
 </ion-content>

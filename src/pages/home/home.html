@@ -19,7 +19,7 @@
   <ion-list>
     <ion-item *ngFor="let movie of movies" (click)="detailsMovies(movie)">
       <ion-thumbnail item-start>
-        <img src="{{movie.Poster}}">
+        <img src="{{movie.Poster}}" alt="{{movie.Title}}" title="{{movie.Title}}">
       </ion-thumbnail>
       <h2>{{movie.Title}}</h2>
       <p>{{movie.Year}}</p>
