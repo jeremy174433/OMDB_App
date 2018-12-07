@@ -33,16 +33,10 @@
     </div>
     <hr>
     <div id="QR-code">
-      <div>
-        <p>Scan the QR Code for more informations :</p>
-        <qrcode [qrdata]="myAngularxQrCode" [size]="150" [level]="'M'"></qrcode>
-      </div>
-      <div class="camera">
-          <button ion-button icon-start>
-              <ion-icon name="camera"></ion-icon>
-              Accéder à l'appareil
-          </button>
-      </div>
+      <p>Scan the QR Code for more informations :</p>
+      <qrcode [qrdata]="myAngularxQrCode" [size]="150" [level]="'M'"></qrcode>
+      <button ion-button full icon-start (click)="openCamera()"><ion-icon name="camera"></ion-icon>Open Camera</button>
+      <img src="{{myPicture}}" alt="{{myPicture}}" title="{{myPicture}}" *ngIf="myPicture">
     </div>
   </div>
 

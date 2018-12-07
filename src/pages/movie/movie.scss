@@ -51,12 +51,10 @@ ion-thumbnail {
 
 #QR-code {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
 
-    .camera {
-        display: flex;
-        align-items: flex-end;
-        z-index: -1;
-        margin-left: 15px !important;
+    button {
+        margin-top: 30px;
     }
 }
