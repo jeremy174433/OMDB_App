@@ -51,7 +51,7 @@ export class MoviePage {
           Year: data['Year'],
           Rated: data['Rated'],
           Released: data['Released'],
-          RunTime: data['RunTime'],
+          Runtime: data['Runtime'],
           Genre: data['Genre'],
           Director: data['Director'],
           Writer: data['Writer'],
@@ -72,6 +72,7 @@ export class MoviePage {
           Website: data['Website'],
           Response: data['Response']
         }
+        console.log('Title: ' + data['Title'], ' Runtime: ' + data['Runtime'])
         this.myAngularxQrCode = this.moviedetails.Website;
       },
       (error) => {

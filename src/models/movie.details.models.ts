@@ -3,7 +3,7 @@ interface MovieDetails {
     Year: Date,
     Rated: string,
     Released: string,
-    RunTime: string,
+    Runtime: string,
     Genre: string,
     Director: string,
     Writer: string,
