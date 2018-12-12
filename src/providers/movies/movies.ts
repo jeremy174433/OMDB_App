@@ -13,7 +13,6 @@ export class MoviesProvider {
   private apikey = '76b9cca4';
 
   constructor(public http: HttpClient) {
-    console.log('Hello MoviesProvider Provider');
   }
 
   setProvider() {

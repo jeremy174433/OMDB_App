@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{moviedetails.Title}}</ion-title>
+    <ion-title>{{moviedetails?.Title}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -17,19 +17,19 @@
 
   <div>
     <ion-thumbnail>
-      <img src="{{moviedetails.Poster}}" alt="{{moviedetails.Title}}" title="{{moviedetails.Title}}">
+      <img src="{{moviedetails?.Poster}}" alt="{{moviedetails?.Title}}" title="{{moviedetails?.Title}}">
     </ion-thumbnail>
     <div id="favorite-container">
       <button ion-fab class="favorite">
         <ion-icon name="heart-outline"></ion-icon>
       </button>
     </div>
-    <p class="description">{{moviedetails.Plot}}</p>
+    <p class="description">{{moviedetails?.Plot}}</p>
     <div class="tags">
-        <p>{{moviedetails.Year}}</p>
-        <p>{{moviedetails.Runtime}}</p>
-        <p>{{moviedetails.Type}}</p>
-        <p>{{moviedetails.Genre}}</p>
+        <p>{{moviedetails?.Year}}</p>
+        <p>{{moviedetails?.Runtime}}</p>
+        <p>{{moviedetails?.Type}}</p>
+        <p>{{moviedetails?.Genre}}</p>
     </div>
     <hr>
     <div id="QR-code">

@@ -15,6 +15,7 @@ import { Camera } from '@ionic-native/camera';
 import { MoviesProvider } from '../providers/movies/movies';
 import { HttpClientModule } from '@angular/common/http';
 import { QRCodeModule } from 'angularx-qrcode';
+import { MoviedetailsProvider } from '../providers/moviedetails/moviedetails';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { QRCodeModule } from 'angularx-qrcode';
     SplashScreen,
     MoviesProvider,
     Camera,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    MoviedetailsProvider
   ]
 })
 export class AppModule {}

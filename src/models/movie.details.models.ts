@@ -13,8 +13,6 @@ interface MovieDetails {
     Country: string,
     Awards: string,
     Poster: string,
-    Ratings: Object [
-    ],
     MetaScore: number,
     imdbRating: string,
     imdbVotes: number,
@@ -26,4 +24,3 @@ interface MovieDetails {
     Website: string,
     Response: boolean
 }
-  
