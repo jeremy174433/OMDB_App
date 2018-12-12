@@ -72,7 +72,7 @@ export class MoviePage {
           Website: data['Website'],
           Response: data['Response']
         }
-        console.log('Website: ' + data['Website'], ' Runtime: ' + data['Runtime'])
+        console.log('Ratings: ' + data['Ratings'])
         this.myAngularxQrCode = data['Website'];
       },
       (error) => {

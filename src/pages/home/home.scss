@@ -1,7 +1,3 @@
-page-home {
-
-}
-
 .searchbar-input {
     border-radius: 20px !important;
     box-shadow: 0 0 15px rgba(104, 70, 70, 0.16) !important;
@@ -11,3 +7,29 @@ ion-thumbnail > img {
     background: #f2f2f2;
     border-radius: 5px;
 }
+
+.card-background-page {
+
+    ion-card {
+      position: relative;
+      text-align: center;
+    }
+  
+    .card-title {
+      position: absolute;
+      top: 36%;
+      font-size: 2.0em;
+      width: 100%;
+      font-weight: bold;
+      color: #fff;
+    }
+  
+    .card-subtitle {
+      font-size: 1.0em;
+      position: absolute;
+      top: 52%;
+      width: 100%;
+      color: #fff;
+    }
+  
+  }
