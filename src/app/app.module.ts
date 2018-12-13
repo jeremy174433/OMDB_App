@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { ContactPage } from '../pages/contact/contact';
+import { BoxofficePage } from '../pages/boxoffice/boxoffice';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { MoviePage } from '../pages/movie/movie';
@@ -20,7 +20,7 @@ import { MoviedetailsProvider } from '../providers/moviedetails/moviedetails';
 @NgModule({
   declarations: [
     MyApp,
-    ContactPage,
+    BoxofficePage,
     HomePage,
     TabsPage,
     MoviePage,
@@ -35,7 +35,7 @@ import { MoviedetailsProvider } from '../providers/moviedetails/moviedetails';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    ContactPage,
+    BoxofficePage,
     HomePage,
     TabsPage,
     MoviePage,

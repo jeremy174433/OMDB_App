@@ -19,8 +19,8 @@
   <ion-list>
     <ion-grid>
       <ion-row>
-        <ion-col col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngFor="let movie of movies" (click)="detailsMovies(movie)">
-          <ion-item>
+        <ion-col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 *ngFor="let movie of movies" (click)="detailsMovies(movie)">
+          <ion-item class="itemCardMovie">
             <ion-thumbnail item-start>
               <img src="{{movie.Poster}}" alt="{{movie.Title}}" title="{{movie.Title}}">
             </ion-thumbnail>
