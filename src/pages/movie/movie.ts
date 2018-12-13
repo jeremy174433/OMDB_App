@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { HttpClient } from "@angular/common/http";
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { MoviesProvider } from "../../providers/movies/movies";
 import { Observable } from "rxjs/Observable";
 
 /**
@@ -33,7 +32,6 @@ export class MoviePage {
     private http: HttpClient, 
     private camera: Camera, 
     private alertCtrl : AlertController,
-    private MoviesProvider: MoviesProvider
     ) {
   }
 
