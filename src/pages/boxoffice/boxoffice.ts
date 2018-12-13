@@ -17,7 +17,7 @@ import { Observable } from "rxjs/Observable";
 })
 export class BoxofficePage {
   listDiscoverMovies: MovieBoxOffice;
-  listMovies: object[];
+  listMovies: any[];
   detailsMovie: MovieTMDBDetails;
   boxOffice = [];
 
@@ -31,6 +31,7 @@ export class BoxofficePage {
   ngOnInit() {
     this.getListMovies().subscribe(
       (data: MovieBoxOffice) => {
+        console.log(data)
         this.listDiscoverMovies =
         { // we need to specify for each property the data to use
           page: data['page'],
@@ -78,8 +79,6 @@ export class BoxofficePage {
             }
           );
         }
-        console.log('List of movies by get details of each movie')
-        console.log(this.boxOffice)
       },
       (error) => {
         console.log(error)
@@ -94,6 +93,16 @@ export class BoxofficePage {
   public getDetailsMovies(id): Observable<MovieTMDBDetails> {
     return this.http.get<MovieTMDBDetails>
     ('https://api.themoviedb.org/3/movie/' + id + '?api_key=0ea432d6c4053e8ee8a5574e79b0eaec&language=fr-FR')
+  }
+
+  public getBoxOffice() {
+    console.log('Array of 20 first movies for current year in budget desc')
+    console.log(this.boxOffice)
+    this.boxOffice.sort(function (a, b) {
+      return a.budget - b.budget;
+    });
+    console.log('sort')
+    console.log(this.boxOffice)
   }
 
 }
