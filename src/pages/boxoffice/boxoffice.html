@@ -14,5 +14,19 @@
 
 
 <ion-content padding>
-  <button ion-button full icon-start (click)="getBoxOffice()">Get Box office</button>
+  <h1 text-center>Box office 2018</h1>
+  <table>
+    <tr>
+      <th>Nom</th>
+      <th>Budget</th> 
+      <th>Revenu</th>
+      <th>Bénéfice</th>
+    </tr>
+    <tr *ngFor="let movieRevenue of boxOffice" (click)="goToDetailsMovies(movieRevenue)">
+      <th>{{movieRevenue.title}}</th>
+      <th>{{movieRevenue.budget}} $</th> 
+      <th>{{movieRevenue.revenue}} $</th>
+      <th>{{ movieRevenue.revenue - movieRevenue.budget  }} $</th>
+    </tr>
+  </table>
 </ion-content>

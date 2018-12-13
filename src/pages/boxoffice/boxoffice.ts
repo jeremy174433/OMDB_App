@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
+import { MoviePage } from "../movie/movie";
 
 /**
  * Generated class for the BoxofficePage page.
@@ -40,8 +41,6 @@ export class BoxofficePage {
           total_pages: data['total_pages'],
         }
         this.listMovies = this.listDiscoverMovies['results']
-        console.log('List of movies by discover')
-        console.log(this.listMovies)
         for(var c=0; c < this.listMovies.length; c++) {
           this.getDetailsMovies(this.listMovies[c].id).subscribe(
             (data: MovieTMDBDetails) => {
@@ -84,6 +83,7 @@ export class BoxofficePage {
         console.log(error)
       }
     );
+    this.getBoxOffice()
   }
 
   public getListMovies(): Observable<MovieBoxOffice> {
@@ -97,12 +97,17 @@ export class BoxofficePage {
 
   public getBoxOffice() {
     console.log('Array of 20 first movies for current year in budget desc')
-    console.log(this.boxOffice)
     this.boxOffice.sort(function (a, b) {
       return a.budget - b.budget;
     });
-    console.log('sort')
     console.log(this.boxOffice)
+  }
+
+  public goToDetailsMovies (movie) {
+    console.log(movie)
+    this.navCtrl.push(MoviePage, {
+      id: movie.imdb_id
+    });
   }
 
 }
