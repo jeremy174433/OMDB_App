@@ -34,10 +34,34 @@ export class BoxofficePage {
   ) {
   }
 
-  // CHARTS JS ION LOAD
-  ionViewDidLoad() {
+  // METHODS
+  private getListMovies(): Observable<MovieBoxOffice> {
+    return this.http.get<MovieBoxOffice>
+    ('https://api.themoviedb.org/3/discover/movie?api_key=0ea432d6c4053e8ee8a5574e79b0eaec&language=fr-FR&sort_by=revenue.desc&include_adult=false&include_video=false&page=1&primary_release_year=2018')
+  }
+  private getDetailsMovies(id): Observable<MovieTMDBDetails> {
+    return this.http.get<MovieTMDBDetails>
+    ('https://api.themoviedb.org/3/movie/' + id + '?api_key=0ea432d6c4053e8ee8a5574e79b0eaec&language=fr-FR')
+  }
+
+  private getBoxOffice() {
+    console.log('Array of 20 first movies for current year in budget desc')
+    this.boxOffice.sort(function (a, b) {
+      return a.budget - b.budget;
+    });
+    console.log(this.boxOffice)
+  }
+
+  private goToDetailsMovies (movie) {
+    console.log(movie)
+    this.navCtrl.push(MoviePage, {
+      id: movie.imdb_id
+    });
+  }
+
+  private setChart () {
     this.barChart = new Chart(this.barCanvas.nativeElement, {
-      type: 'bar',
+      type: 'horizontalBar',
       data: {
         labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
         datasets: [{
@@ -127,30 +151,7 @@ export class BoxofficePage {
       }
     );
     this.getBoxOffice()
-  }
-
-  public getListMovies(): Observable<MovieBoxOffice> {
-    return this.http.get<MovieBoxOffice>
-    ('https://api.themoviedb.org/3/discover/movie?api_key=0ea432d6c4053e8ee8a5574e79b0eaec&language=fr-FR&sort_by=revenue.desc&include_adult=false&include_video=false&page=1&primary_release_year=2018')
-  }
-  public getDetailsMovies(id): Observable<MovieTMDBDetails> {
-    return this.http.get<MovieTMDBDetails>
-    ('https://api.themoviedb.org/3/movie/' + id + '?api_key=0ea432d6c4053e8ee8a5574e79b0eaec&language=fr-FR')
-  }
-
-  public getBoxOffice() {
-    console.log('Array of 20 first movies for current year in budget desc')
-    this.boxOffice.sort(function (a, b) {
-      return a.budget - b.budget;
-    });
-    console.log(this.boxOffice)
-  }
-
-  public goToDetailsMovies (movie) {
-    console.log(movie)
-    this.navCtrl.push(MoviePage, {
-      id: movie.imdb_id
-    });
+    this.setChart()
   }
 
 }
