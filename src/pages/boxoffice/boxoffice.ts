@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild  } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { MoviePage } from "../movie/movie";
+import { Chart } from 'chart.js';
 
 /**
  * Generated class for the BoxofficePage page.
@@ -17,6 +18,10 @@ import { MoviePage } from "../movie/movie";
   templateUrl: 'boxoffice.html',
 })
 export class BoxofficePage {
+  // CHARTS.JS
+  @ViewChild('barCanvas') barCanvas;
+  barChart: any;
+  // DATA FROM API
   listDiscoverMovies: MovieBoxOffice;
   listMovies: any[];
   detailsMovie: MovieTMDBDetails;
@@ -29,10 +34,48 @@ export class BoxofficePage {
   ) {
   }
 
+  // CHARTS JS ION LOAD
+  ionViewDidLoad() {
+    this.barChart = new Chart(this.barCanvas.nativeElement, {
+      type: 'bar',
+      data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero:true
+            }
+          }]
+        }
+      }
+    });
+  }
   ngOnInit() {
     this.getListMovies().subscribe(
       (data: MovieBoxOffice) => {
-        console.log(data)
         this.listDiscoverMovies =
         { // we need to specify for each property the data to use
           page: data['page'],
