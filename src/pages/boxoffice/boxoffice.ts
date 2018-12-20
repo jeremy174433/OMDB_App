@@ -5,13 +5,6 @@ import { Observable } from "rxjs/Observable";
 import { MoviePage } from "../movie/movie";
 import { Chart } from 'chart.js';
 
-/**
- * Generated class for the BoxofficePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-boxoffice',
@@ -46,9 +39,6 @@ export class BoxofficePage {
 
   private getBoxOffice() {
     console.log('Array of 20 first movies for current year in budget desc')
-    this.boxOffice.sort(function (a, b) {
-      return a.budget - b.budget;
-    });
     console.log(this.boxOffice)
   }
 
@@ -106,7 +96,7 @@ export class BoxofficePage {
           total_results: data['total_results'],
           total_pages: data['total_pages'],
         }
-        this.listMovies = this.listDiscoverMovies['results']
+        this.listMovies = this.listDiscoverMovies['results'];
         for(var c=0; c < this.listMovies.length; c++) {
           this.getDetailsMovies(this.listMovies[c].id).subscribe(
             (data: MovieTMDBDetails) => {
@@ -137,7 +127,8 @@ export class BoxofficePage {
                 vote_average: data['vote_average'],
                 vote_count: data['vote_count'] 
               }
-              this.boxOffice.push(this.detailsMovie);
+              this.boxOffice.push(this.detailsMovie)
+              console.log(this.boxOffice)
             },
             (err) => {
               console.log(err)
