@@ -53,7 +53,6 @@ export class BoxofficePage {
   }
 
   private goToDetailsMovies (movie) {
-    console.log(movie)
     this.navCtrl.push(MoviePage, {
       id: movie.imdb_id
     });

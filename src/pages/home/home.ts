@@ -24,7 +24,6 @@ export class HomePage {
 
   getApiKey () {
     this.apiKey = this.MoviesProvider.setProvider();
-    console.log(this.apiKey)
   }
 
   detailsMovies (movie) {
