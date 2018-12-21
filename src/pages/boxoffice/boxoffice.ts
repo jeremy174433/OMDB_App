@@ -79,7 +79,6 @@ export class BoxofficePage {
                 vote_count: data['vote_count'] 
               }
               this.boxOffice.push(this.detailsMovie)
-              console.log(this.boxOffice)
             },
             (err) => {
               console.log(err)
@@ -144,7 +143,6 @@ export class BoxofficePage {
   }
   ngOnInit() {
     this.getMoviesData()
-    this.getBoxOffice()
     this.setChart()
   }
 
