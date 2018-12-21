@@ -21,6 +21,8 @@ export class BoxofficePage {
   boxOffice = [];
   labelCharts = [];
   dataCharts = [];
+  tabArray  = document.querySelector('#arrayContent')
+  tabCharts = document.querySelector('#chartsContent')
 
   constructor(
     public navCtrl: NavController, 
@@ -54,6 +56,13 @@ export class BoxofficePage {
           for(var c=0; c < this.listMovies.length; c++) {
             this.getDetailsMovies(this.listMovies[c].id).subscribe(
               (data: MovieTMDBDetails) => {
+                /* function numberWithSpaces(x) {
+                  var parts = x.toString().split(".");
+                  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+                  return parts.join(".");
+                }
+                var revenueSpace = numberWithSpaces(data['revenue']);
+                var budgetSpace = numberWithSpaces(data['budget']); */
                 this.detailsMovie = {
                   adult: data['adult'],
                   backdrop_path: data['backdrop_path'],
@@ -98,13 +107,50 @@ export class BoxofficePage {
     })
   }
 
-  private getBoxOffice() {
+  private fadeIn(element) { // SOURCE : https://stackoverflow.com/questions/6121203/how-to-do-fade-in-and-fade-out-with-javascript-and-css
+    var op = 1;  // initial opacity
+    var timer = setInterval(function () {
+      if (op <= 0.1){
+        clearInterval(timer);
+        element.style.display = 'none';
+      }
+      element.style.opacity = op;
+      element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+      op -= op * 0.1;
+    }, 50);
+  }
+
+  private fadeOut(element) {
+    var op = 0.1;  // initial opacity
+      element.style.display = 'block';
+      var timer = setInterval(function () {
+        if (op >= 1){
+          clearInterval(timer);
+        }
+        element.style.opacity = op;
+        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+      op += op * 0.1;
+    }, 10);
+  }
+
+  private displayCharts() {
+    console.log(this.tabCharts)
+    console.log(this.tabArray)
+    /* this.fadeIn(this.tabCharts)
+    this.fadeOut(this.tabArray) */
     console.log(this.boxOffice)
     this.labelCharts = [this.boxOffice[0].title, this.boxOffice[1].title, this.boxOffice[2].title, this.boxOffice[3].title]
     this.dataCharts = [this.boxOffice[0].revenue,this.boxOffice[1].revenue,this.boxOffice[2].revenue,this.boxOffice[3].revenue]
     console.log(this.labelCharts)
     console.log(this.dataCharts)
     this.setChart()
+  }
+
+  private displayArray () {
+    console.log(this.tabCharts)
+    console.log(this.tabArray)
+    /* this.fadeOut(this.tabCharts)
+    this.fadeIn(this.tabArray) */
   }
 
   private goToDetailsMovies (movie) {
@@ -116,6 +162,9 @@ export class BoxofficePage {
   private setChart () {
     this.barChart = new Chart(this.barCanvas.nativeElement, {
       type: 'horizontalBar',
+      axisY:{
+        valueFormatString: "$#,###,#0", //try properties here
+      },
       data: {
         labels: this.labelCharts,
         datasets: [{

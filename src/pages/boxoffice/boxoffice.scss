@@ -27,3 +27,26 @@ tr:nth-child(even) {
     }
  
 }
+// MY CSS
+.tabSwitchArrGraph { /* grid contains tabs for switch between array and charts */
+    padding: 0;
+    margin: 0;
+    ion-col { /* one tab */
+        padding: 0;
+        margin: 0;
+    }
+    ion-col:first-child {
+        button {
+            border-right: 2px solid white;
+        }
+    }
+}
+// DISPLAY OF TABS
+#arrayContent {
+    display: block;
+    margin-top: 10px;
+}
+#chartsContent {
+    display: none;
+    margin-top: 10px;
+}
