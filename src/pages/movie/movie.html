@@ -1,0 +1,50 @@
+<!--
+  Generated template for the MoviePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{moviedetails.Title}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div>
+    <ion-thumbnail>
+      <img src="{{moviedetails.Poster}}" alt="{{moviedetails.Title}}" title="{{moviedetails.Title}}">
+    </ion-thumbnail>
+    <div id="favorite-container">
+      <div [ngSwitch]="show">
+        <button *ngSwitchCase=false ion-button icon-start  (click)="ajout_en_bdd(  moviedetails.Title , moviedetails.Poster , moviedetails.imdbID)">
+          <ion-icon name="heart"></ion-icon>
+          ajouter aux favoris
+        </button>
+        <button *ngSwitchCase=true ion-button icon-start color="danger"  (click)="supprimer_de_bdd(moviedetails.imdbID )">
+          <ion-icon name="heart-outline"></ion-icon>
+          retirer des favoris
+        </button>
+      </div>
+    </div>
+    <p class="description">{{moviedetails.Plot}}</p>
+    <div class="tags">
+        <p>{{moviedetails.Year}}</p>
+        <p>{{moviedetails.Runtime}}</p>
+        <p>{{moviedetails.Type}}</p>
+        <p>{{moviedetails.Genre}}</p>
+    </div>
+    <hr>
+    <div id="QR-code">
+      <p>Scan the QR Code for more informations :</p>
+      <qrcode [qrdata]="myAngularxQrCode" [size]="150" [level]="'M'"></qrcode>
+      <button ion-button full icon-start (click)="openCamera()"><ion-icon name="camera"></ion-icon>Open Camera</button>
+      <img src="{{myPicture}}" alt="{{myPicture}}" title="{{myPicture}}" *ngIf="myPicture">
+    </div>
+  </div>
+
+</ion-content>
