@@ -20,9 +20,16 @@
       <img src="{{moviedetails?.Poster}}" alt="{{moviedetails?.Title}}" title="{{moviedetails?.Title}}">
     </ion-thumbnail>
     <div id="favorite-container">
-      <button ion-fab class="favorite">
-        <ion-icon name="heart-outline"></ion-icon>
-      </button>
+      <div [ngSwitch]="show">
+        <button *ngSwitchCase=false ion-button icon-start  (click)="ajout_en_bdd(  moviedetails.Title , moviedetails.Poster , moviedetails.imdbID)">
+          <ion-icon name="heart"></ion-icon>
+          ajouter aux favoris
+        </button>
+        <button *ngSwitchCase=true ion-button icon-start color="danger"  (click)="supprimer_de_bdd(moviedetails.imdbID )">
+          <ion-icon name="heart-outline"></ion-icon>
+          retirer des favoris
+        </button>
+      </div>
     </div>
     <p class="description">{{moviedetails?.Plot}}</p>
     <div class="tags">

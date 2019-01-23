@@ -15,6 +15,8 @@ import { Camera } from '@ionic-native/camera';
 import { MoviesProvider } from '../providers/movies/movies';
 import { HttpClientModule } from '@angular/common/http';
 import { QRCodeModule } from 'angularx-qrcode';
+import { BddProvider } from '../providers/bdd/bdd';
+import {IonicStorageModule} from "@ionic/storage";
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { QRCodeModule } from 'angularx-qrcode';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
-    QRCodeModule
+    QRCodeModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -45,7 +48,8 @@ import { QRCodeModule } from 'angularx-qrcode';
     SplashScreen,
     MoviesProvider,
     Camera,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    BddProvider
   ]
 })
 export class AppModule {}

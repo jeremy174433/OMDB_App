@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { HttpClient } from "@angular/common/http";
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Observable } from "rxjs/Observable";
+import {BddProvider} from "../../providers/bdd/bdd";
 
 /**
  * Generated class for the MoviePage page.
@@ -25,6 +26,7 @@ export class MoviePage {
   public myAngularxQrCode: string = null;
   public photos : any;
   myPictures: string;
+  show: boolean;
 
   constructor(
     public navCtrl: NavController, 
@@ -32,12 +34,25 @@ export class MoviePage {
     private http: HttpClient, 
     private camera: Camera, 
     private alertCtrl : AlertController,
+    private BddProvider: BddProvider
     ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MoviePage');
   }
+
+  ionViewWillEnter(){// on vérifie si ce film est deja en favoris
+    this.BddProvider.id = this.navParams.get('id')
+    const promise = this.BddProvider.verification_favoris()
+    promise.then(boolean_bdd => {
+      if ( boolean_bdd == true ){
+        this.show = true }
+      else {
+        this.show = false }
+    })
+  }
+
 
   ngOnInit() {
     this.getMovieDetails().subscribe(
@@ -119,5 +134,14 @@ export class MoviePage {
     confirm.present();
   }
 
+  ajout_en_bdd(MovieTitle , MoviePoster , MovieID) {
+    this.show = true; 
+    this.BddProvider.ajout_en_bdd(MovieTitle , MoviePoster , MovieID);
+  }
+
+  supprimer_de_bdd(MovieID) {
+    this.show = false;
+    this.BddProvider.supprimer_de_bdd(MovieID);
+  }
 
 }
