@@ -129,38 +129,18 @@ export class BoxofficePage {
     this.barChart = new Chart(this.barCanvas.nativeElement, {
       type: 'bar',
       data: {
-        labels: ["1900"],
+        labels: ["Revenu"],
         datasets: [
           {
-            label: "Africa",
+            label: "Avengers: Infinity War",
             backgroundColor: "#3e95cd",
-            data: [133]
-          }, 
-          {
-            label: "Europe",
-            backgroundColor: "#8e5ea2",
-            data: [408]
+            data: [2046239637]
           },
           {
-            label: "Europe",
-            backgroundColor: "#8e5ea2",
-            data: [408]
+            label: "Black Panther",
+            backgroundColor: "#5e95cd",
+            data: [1346739107]
           },
-          {
-            label: "Europe",
-            backgroundColor: "#8e5ea2",
-            data: [408]
-          },
-          {
-            label: "Europe",
-            backgroundColor: "#8e5ea2",
-            data: [408]
-          },
-          {
-            label: "Europe",
-            backgroundColor: "#8e5ea2",
-            data: [408]
-          }
         ]
       },
       options: {

@@ -1,32 +1,63 @@
-table {
+table { // SOURCE: https://codepen.io/AllThingsSmitty/pen/MyqmdM
+    border: 1px solid #ccc;
     border-collapse: collapse;
+    margin: 0;
+    padding: 0;
     width: 100%;
-}
-  
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-  
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
-.ios, .md {
- 
-    page-home {
- 
-        .scroll-content {
-            background-color: map-get($colors, light);
-        }
- 
-        ion-card-header {
-            font-weight: bold;
-        }
- 
+    table-layout: fixed;
+    tr {
+      background-color: #f8f8f8;
+      border: 1px solid #ddd;
+      padding: .35em;
     }
- 
-}
+    th, td {
+      padding: .625em;
+      text-align: center;
+    }
+    th {
+      font-size: 1em;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    table {
+      border: 0;
+      caption {
+        font-size: 1.3em;
+      }
+      thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+      }
+      tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625em;
+      }
+      td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        text-align: right;
+        &::before {
+          content: attr(data-label);
+          float: left;
+          font-weight: bold;
+          text-transform: uppercase;
+        }
+        &:last-child {
+          border-bottom: 0;
+        }
+      }
+    }
+  }
 // MY CSS
 .tabSwitchArrGraph { /* grid contains tabs for switch between array and charts */
     padding: 0;

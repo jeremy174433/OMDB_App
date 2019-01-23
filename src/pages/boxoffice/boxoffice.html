@@ -26,18 +26,22 @@
   </ion-grid>
   <div [ngClass]="{'arrayContainer': true, 'showArray': !showCharts, 'hideArray': showCharts}">
     <table>
-      <tr>
-        <th>Nom</th>
-        <th>Budget</th> 
-        <th>Revenu</th>
-        <th>Bénéfice</th>
-      </tr>
-      <tr *ngFor="let movieRevenue of boxOffice" (click)="goToDetailsMovies(movieRevenue)">
-        <th>{{movieRevenue.title}}</th>
-        <th>{{movieRevenue.budget}} $</th> 
-        <th>{{movieRevenue.revenue}} $</th>
-        <th>{{ movieRevenue.revenue - movieRevenue.budget  }} $</th>
-      </tr>
+      <thead>
+        <tr>
+          <th scope="col">Nom</th>
+          <th scope="col">Budget</th>
+          <th scope="col">Revenu</th>
+          <th scope="col">Bénéfice</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let movieRevenue of boxOffice" (click)="goToDetailsMovies(movieRevenue)">
+          <td scope="row" data-label="Nom">{{movieRevenue.title}}</td>
+          <td data-label="Budget">{{movieRevenue.budget}} $</td> 
+          <td data-label="Revenue">{{movieRevenue.revenue}} $</td>
+          <td data-label="Bénéfice">{{ movieRevenue.revenue - movieRevenue.budget  }} $</td>
+        </tr>
+      </tbody>
     </table>
   </div>
   <div [ngClass]="{'chartsContainer': true, 'showCharts': showCharts, 'hideCharts': !showCharts}">
