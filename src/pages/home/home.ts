@@ -43,8 +43,8 @@ export class HomePage {
         this.http.get(`http://www.omdbapi.com/?apikey=` + this.apiKey + `&s=${searchTerm}`)
         .subscribe(
           (data: Movie) => {
-            console.log(data)
             if (data.Response === 'True') {
+              console.log(data);
               this.movies = data.Search;
               this.isMovies = true;
             } else { 

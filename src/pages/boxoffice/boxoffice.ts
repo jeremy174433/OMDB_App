@@ -23,7 +23,7 @@ export class BoxofficePage {
   detailsMovie: MovieTMDBDetails;
   boxOffice = [];
   labelCharts = [];
-  dataCharts = [];
+  dataCharts = ["1","2","3","4"];
 
   constructor(
     public navCtrl: NavController, 
@@ -110,6 +110,7 @@ export class BoxofficePage {
 
 
   public displayCharts() {
+    this.setChart();
     this.showCharts = true;
   }
 
@@ -124,41 +125,51 @@ export class BoxofficePage {
   }
 
   private setChart () {
+    console.log(this.boxOffice);
     this.barChart = new Chart(this.barCanvas.nativeElement, {
-      type: 'horizontalBar',
-      axisY:{
-        valueFormatString: "$#,###,#0", //try properties here
-      },
+      type: 'bar',
       data: {
-        labels: this.labelCharts,
-        datasets: [{
-          label: 'Revenu générés en $',
-          data: this.dataCharts,
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(255, 99, 132, 0.2)'
-          ],
-          borderColor: [
-            'rgba(255,99,132,1)',
-            'rgba(255,99,132,1)',
-            'rgba(255,99,132,1)',
-            'rgba(255,99,132,1)'
-          ],
-          borderWidth: 1
-        }]
+        labels: ["1900"],
+        datasets: [
+          {
+            label: "Africa",
+            backgroundColor: "#3e95cd",
+            data: [133]
+          }, 
+          {
+            label: "Europe",
+            backgroundColor: "#8e5ea2",
+            data: [408]
+          },
+          {
+            label: "Europe",
+            backgroundColor: "#8e5ea2",
+            data: [408]
+          },
+          {
+            label: "Europe",
+            backgroundColor: "#8e5ea2",
+            data: [408]
+          },
+          {
+            label: "Europe",
+            backgroundColor: "#8e5ea2",
+            data: [408]
+          },
+          {
+            label: "Europe",
+            backgroundColor: "#8e5ea2",
+            data: [408]
+          }
+        ]
       },
       options: {
-        scales: {
-          xAxes: [{
-            ticks: {
-              beginAtZero:true
-            }
-          }]
+        title: {
+          display: true,
+          text: 'Population growth (millions)'
         }
       }
-    });
+  });
   }
   ngOnInit() {
     this.showCharts = false;

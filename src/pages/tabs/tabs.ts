@@ -9,9 +9,9 @@ import { HomePage } from '../home/home';
 })
 export class TabsPage {
 
-  tab1Root = HomePage;
+  tab1Root = BoxofficePage;
   tab2Root = FavoritesPage;
-  tab3Root = BoxofficePage;
+  tab3Root = HomePage;
 
   constructor() {
 
