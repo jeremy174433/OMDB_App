@@ -48,7 +48,6 @@ export class BddProvider {
 
   verification_favoris() {
      return new Promise((resolve, reject) => this.storage.get("favoris").then(value => {
-       console.log(" on rentre dans la promise de bdd");
       if (value != null) {
         resolve(value)
       } else {
@@ -57,14 +56,10 @@ export class BddProvider {
     })).then(RetourPromise => {
         // @ts-ignore
         for (var i = 0; i < RetourPromise.length; i++) {
-          console.log( RetourPromise[i].id);
-          console.log( this.id);
           if (RetourPromise[i].id == this.id) {
-            console.log(' en bdd');
             return true
           }
         }
-       console.log(' pas en bdd');
         return false
       }
     ).catch(error => {

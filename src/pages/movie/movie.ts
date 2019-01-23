@@ -39,7 +39,6 @@ export class MoviePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MoviePage');
   }
 
   ionViewWillEnter(){// on vérifie si ce film est deja en favoris
@@ -77,7 +76,7 @@ export class MoviePage {
           MetaScore: data['MetaScore'],
           imdbRating: data['imdbRating'],
           imdbVotes: data['imdbVotes'],
-          imdbId: data['imdbId'],
+          imdbID: data['imdbID'],
           Type: data['Type'],
           DVD: data['DVD'],
           BoxOffice: data['BoxOffice'],
@@ -85,7 +84,6 @@ export class MoviePage {
           Website: data['Website'],
           Response: data['Response']
         }
-        console.log('Ratings: ' + data['Ratings'])
         this.myAngularxQrCode = data['Website'];
       },
       (error) => {
@@ -135,6 +133,7 @@ export class MoviePage {
   }
 
   ajout_en_bdd(MovieTitle , MoviePoster , MovieID) {
+    console.log(this.moviedetails);
     this.show = true; 
     this.BddProvider.ajout_en_bdd(MovieTitle , MoviePoster , MovieID);
   }

@@ -21,7 +21,7 @@
     </ion-thumbnail>
     <div id="favorite-container">
       <div [ngSwitch]="show">
-        <button *ngSwitchCase=false ion-button icon-start  (click)="ajout_en_bdd(  moviedetails.Title , moviedetails.Poster , moviedetails.imdbID)">
+        <button *ngSwitchCase=false ion-button icon-start  (click)="ajout_en_bdd(moviedetails?.Title , moviedetails?.Poster , moviedetails?.imdbID)">
           <ion-icon name="heart"></ion-icon>
           ajouter aux favoris
         </button>

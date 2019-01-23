@@ -16,7 +16,7 @@ interface MovieDetails {
     MetaScore: number,
     imdbRating: string,
     imdbVotes: number,
-    imdbId: string,
+    imdbID: string,
     Type: string,
     DVD: Date,
     BoxOffice: string,

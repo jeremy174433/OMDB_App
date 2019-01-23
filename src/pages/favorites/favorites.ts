@@ -39,7 +39,7 @@ export class FavoritesPage {
 
   detailsMovies (movie) {
     this.navCtrl.push(MoviePage, {
-      id: movie.imdbID
+      id: movie.id
     });
   }
 
