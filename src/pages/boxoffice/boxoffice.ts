@@ -15,8 +15,8 @@ export class BoxofficePage {
   @ViewChild('barCanvas') barCanvas:ElementRef;
   barChart: any;
   // DOM
-  showArray: boolean;
   showCharts: boolean;
+  canvas: Element;
   // DATA FROM API
   listDiscoverMovies: MovieBoxOffice;
   listMovies: any[];
@@ -110,17 +110,11 @@ export class BoxofficePage {
 
 
   public displayCharts() {
-    this.showArray = false;
     this.showCharts = true;
-    console.log(this.barCanvas);
-    this.setChart();
-    console.log('Show charts: ' + this.showCharts);
   }
 
   public displayArray () {
-    this.showArray = true;
     this.showCharts = false;
-    console.log('Show array: ' +this.showArray);
   }
 
   public goToDetailsMovies (movie) {
@@ -167,9 +161,8 @@ export class BoxofficePage {
     });
   }
   ngOnInit() {
-    this.getMoviesData();
-    this.showArray = true;
     this.showCharts = false;
+    this.getMoviesData();
   }
 
 }

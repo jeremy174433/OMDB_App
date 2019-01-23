@@ -41,12 +41,29 @@ tr:nth-child(even) {
         }
     }
 }
-// DISPLAY OF TABS
-#arrayContent {
-    display: block;
-    margin-top: 10px;
+ion-col {
+    .arrayActiveBtn, .chartsActiveBtn {
+        background-color: #318CFB;
+        color: #fff;
+    }
+    .arrayUnactiveBtn, .chartsUnactiveBtn {
+        color: #318CFB;
+        background-color: #fff;  
+    }
+    button:hover {
+        color: #fff;
+        background-color: #318CFB !important;
+    }
 }
-#chartsContent {
+.hideCharts {
     display: none;
-    margin-top: 10px;
+}
+.showCharts {
+    display: block;
+}
+.hideArray {
+    display: none;
+}
+.showArray {
+    display: block;
 }
