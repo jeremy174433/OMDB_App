@@ -6,17 +6,17 @@
 
 <ion-content padding>
 
-  <ion-list no-margin>
+  <ion-list no-margin id="listForm">
     <ion-item>
       <ion-searchbar
         [(ngModel)]="searchApi"
-        [formControl]="term"
+        [formControl]="inputSearch"
         placeholder="Search...">
       </ion-searchbar>
     </ion-item>
   </ion-list>
 
-  <ion-list>
+  <ion-list #listMovies *ngIf="isMovies">
     <ion-grid>
       <ion-row>
         <ion-col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 *ngFor="let movie of movies" (click)="detailsMovies(movie)">
@@ -31,5 +31,9 @@
       </ion-row>
     </ion-grid>
   </ion-list>
+
+  <div #divNoMovie *ngIf="!isMovies">
+    <p>Il n'y a aucun film correspondant à cette recherche</p>
+  </div>
 
 </ion-content>

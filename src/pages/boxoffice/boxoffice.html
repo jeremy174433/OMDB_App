@@ -24,7 +24,7 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <div id="arrayContent">
+  <div #arrayContent *ngIf="showArray">
     <table>
       <tr>
         <th>Nom</th>
@@ -40,7 +40,7 @@
       </tr>
     </table>
   </div>
-  <div id="chartsContent">
+  <div #chartsContent *ngIf="showCharts">
     <canvas #barCanvas></canvas>
   </div>
 </ion-content>

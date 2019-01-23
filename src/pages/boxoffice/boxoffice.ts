@@ -1,4 +1,4 @@
-import { Component, ViewChild  } from '@angular/core';
+import { Component, ViewChild, ElementRef  } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
@@ -12,10 +12,11 @@ import { Chart } from 'chart.js';
 })
 export class BoxofficePage {
   // CHARTS.JS
-  @ViewChild('barCanvas') barCanvas;
-  @ViewChild('arrayContent') arrayContent;
-  @ViewChild('chartsContent') chartsContent;
+  @ViewChild('barCanvas') barCanvas:ElementRef;
   barChart: any;
+  // DOM
+  showArray: boolean;
+  showCharts: boolean;
   // DATA FROM API
   listDiscoverMovies: MovieBoxOffice;
   listMovies: any[];
@@ -107,46 +108,19 @@ export class BoxofficePage {
     })
   }
 
-  private fadeIn(element) { // SOURCE : https://stackoverflow.com/questions/6121203/how-to-do-fade-in-and-fade-out-with-javascript-and-css
-    var op = 1;  // initial opacity
-    var timer = setInterval(function () {
-      if (op <= 0.1){
-        clearInterval(timer);
-        element.style.display = 'none';
-      }
-      element.style.opacity = op;
-      element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-      op -= op * 0.1;
-    }, 50);
-  }
-
-  private fadeOut(element) {
-    var op = 0.1;  // initial opacity
-      element.style.display = 'block';
-      var timer = setInterval(function () {
-        if (op >= 1){
-          clearInterval(timer);
-        }
-        element.style.opacity = op;
-        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-      op += op * 0.1;
-    }, 10);
-  }
 
   public displayCharts() {
-    this.fadeIn(this.chartsContent)
-    this.fadeOut(this.arrayContent)
-    console.log(this.boxOffice)
-    this.labelCharts = [this.boxOffice[0].title, this.boxOffice[1].title, this.boxOffice[2].title, this.boxOffice[3].title]
-    this.dataCharts = [this.boxOffice[0].revenue,this.boxOffice[1].revenue,this.boxOffice[2].revenue,this.boxOffice[3].revenue]
-    console.log(this.labelCharts)
-    console.log(this.dataCharts)
-    this.setChart()
+    this.showArray = false;
+    this.showCharts = true;
+    console.log(this.barCanvas);
+    this.setChart();
+    console.log('Show charts: ' + this.showCharts);
   }
 
   public displayArray () {
-    this.fadeOut(this.chartsContent)
-    this.fadeIn(this.arrayContent)
+    this.showArray = true;
+    this.showCharts = false;
+    console.log('Show array: ' +this.showArray);
   }
 
   public goToDetailsMovies (movie) {
@@ -193,7 +167,9 @@ export class BoxofficePage {
     });
   }
   ngOnInit() {
-    this.getMoviesData()
+    this.getMoviesData();
+    this.showArray = true;
+    this.showCharts = false;
   }
 
 }

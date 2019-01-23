@@ -12,11 +12,11 @@ import { MoviesProvider } from "../../providers/movies/movies";
   templateUrl: 'home.html'
 })
 export class HomePage {
-
+  isMovies: boolean;
   searchApi: string = '';
   apiKey: string = '';
   movies = [];
-  private term = new FormControl();
+  private inputSearch = new FormControl();
 
   constructor(public navCtrl: NavController, private http: HttpClient, private MoviesProvider: MoviesProvider) {
 
@@ -33,17 +33,36 @@ export class HomePage {
   }
 
   ngOnInit() {
+    this.isMovies = false;
     this.getApiKey();
-    this.term.valueChanges
+    this.inputSearch.valueChanges
     .debounceTime(500)
     .distinctUntilChanged()
-    .subscribe(searchTerm => {
-      this.http.get(`http://www.omdbapi.com/?apikey=` + this.apiKey + `&s=${searchTerm}`)
-      .subscribe((data: Movie) => {
-        console.log(data);
-        this.movies = data.Search;
-      }).closed
-    });
+    .subscribe(
+      (searchTerm) => {
+        this.http.get(`http://www.omdbapi.com/?apikey=` + this.apiKey + `&s=${searchTerm}`)
+        .subscribe(
+          (data: Movie) => {
+            console.log(data)
+            if (data.Response === 'True') {
+              this.movies = data.Search;
+              this.isMovies = true;
+            } else { 
+              this.isMovies = false; 
+            }
+          },
+          (errorApi) => {
+            console.log('erreur api');
+            console.log(errorApi);
+            this.isMovies = false;
+          }
+        ).closed
+      },
+      (error) => {
+        console.log('erreur subscribe form control');
+        console.log(error);
+        this.isMovies = false;
+      }
+    ).closed
   }
-
 }
