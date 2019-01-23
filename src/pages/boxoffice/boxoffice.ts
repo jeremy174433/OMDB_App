@@ -13,6 +13,8 @@ import { Chart } from 'chart.js';
 export class BoxofficePage {
   // CHARTS.JS
   @ViewChild('barCanvas') barCanvas;
+  @ViewChild('arrayContent') arrayContent;
+  @ViewChild('chartsContent') chartsContent;
   barChart: any;
   // DATA FROM API
   listDiscoverMovies: MovieBoxOffice;
@@ -21,8 +23,6 @@ export class BoxofficePage {
   boxOffice = [];
   labelCharts = [];
   dataCharts = [];
-  tabArray  = document.querySelector('#arrayContent')
-  tabCharts = document.querySelector('#chartsContent')
 
   constructor(
     public navCtrl: NavController, 
@@ -133,11 +133,9 @@ export class BoxofficePage {
     }, 10);
   }
 
-  private displayCharts() {
-    console.log(this.tabCharts)
-    console.log(this.tabArray)
-    /* this.fadeIn(this.tabCharts)
-    this.fadeOut(this.tabArray) */
+  public displayCharts() {
+    this.fadeIn(this.chartsContent)
+    this.fadeOut(this.arrayContent)
     console.log(this.boxOffice)
     this.labelCharts = [this.boxOffice[0].title, this.boxOffice[1].title, this.boxOffice[2].title, this.boxOffice[3].title]
     this.dataCharts = [this.boxOffice[0].revenue,this.boxOffice[1].revenue,this.boxOffice[2].revenue,this.boxOffice[3].revenue]
@@ -146,14 +144,12 @@ export class BoxofficePage {
     this.setChart()
   }
 
-  private displayArray () {
-    console.log(this.tabCharts)
-    console.log(this.tabArray)
-    /* this.fadeOut(this.tabCharts)
-    this.fadeIn(this.tabArray) */
+  public displayArray () {
+    this.fadeOut(this.chartsContent)
+    this.fadeIn(this.arrayContent)
   }
 
-  private goToDetailsMovies (movie) {
+  public goToDetailsMovies (movie) {
     this.navCtrl.push(MoviePage, {
       id: movie.imdb_id
     });
