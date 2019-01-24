@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { MoviePage } from "../movie/movie";
-import { Chart } from 'chart.js';
 
 @IonicPage()
 @Component({
@@ -11,19 +10,12 @@ import { Chart } from 'chart.js';
   templateUrl: 'boxoffice.html',
 })
 export class BoxofficePage {
-  // CHARTS.JS
-  @ViewChild('barCanvas') barCanvas:ElementRef;
-  barChart: any;
-  // DOM
-  showCharts: boolean;
-  canvas: Element;
+  showCards: boolean;
   // DATA FROM API
   listDiscoverMovies: MovieBoxOffice;
   listMovies: any[];
   detailsMovie: MovieTMDBDetails;
   boxOffice = [];
-  labelCharts = [];
-  dataCharts = ["1","2","3","4"];
 
   constructor(
     public navCtrl: NavController, 
@@ -57,13 +49,6 @@ export class BoxofficePage {
           for(var c=0; c < this.listMovies.length; c++) {
             this.getDetailsMovies(this.listMovies[c].id).subscribe(
               (data: MovieTMDBDetails) => {
-                /* function numberWithSpaces(x) {
-                  var parts = x.toString().split(".");
-                  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-                  return parts.join(".");
-                }
-                var revenueSpace = numberWithSpaces(data['revenue']);
-                var budgetSpace = numberWithSpaces(data['budget']); */
                 this.detailsMovie = {
                   adult: data['adult'],
                   backdrop_path: data['backdrop_path'],
@@ -109,13 +94,12 @@ export class BoxofficePage {
   }
 
 
-  public displayCharts() {
-    this.setChart();
-    this.showCharts = true;
+  public displayCards() {
+    this.showCards = true;
   }
 
   public displayArray () {
-    this.showCharts = false;
+    this.showCards = false;
   }
 
   public goToDetailsMovies (movie) {
@@ -124,35 +108,8 @@ export class BoxofficePage {
     });
   }
 
-  private setChart () {
-    console.log(this.boxOffice);
-    this.barChart = new Chart(this.barCanvas.nativeElement, {
-      type: 'bar',
-      data: {
-        labels: ["Revenu"],
-        datasets: [
-          {
-            label: "Avengers: Infinity War",
-            backgroundColor: "#3e95cd",
-            data: [2046239637]
-          },
-          {
-            label: "Black Panther",
-            backgroundColor: "#5e95cd",
-            data: [1346739107]
-          },
-        ]
-      },
-      options: {
-        title: {
-          display: true,
-          text: 'Population growth (millions)'
-        }
-      }
-  });
-  }
   ngOnInit() {
-    this.showCharts = false;
+    this.showCards = false;
     this.getMoviesData();
   }
 

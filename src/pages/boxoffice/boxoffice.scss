@@ -59,7 +59,7 @@ table { // SOURCE: https://codepen.io/AllThingsSmitty/pen/MyqmdM
     }
   }
 // MY CSS
-.tabSwitchArrGraph { /* grid contains tabs for switch between array and charts */
+.tabSwitchArrCards { /* grid contains tabs for switch between array and charts */
     padding: 0;
     margin: 0;
     ion-col { /* one tab */
@@ -73,11 +73,11 @@ table { // SOURCE: https://codepen.io/AllThingsSmitty/pen/MyqmdM
     }
 }
 ion-col {
-    .arrayActiveBtn, .chartsActiveBtn {
+    .arrayActiveBtn, .cardsActiveBtn {
         background-color: #318CFB;
         color: #fff;
     }
-    .arrayUnactiveBtn, .chartsUnactiveBtn {
+    .arrayUnactiveBtn, .cardsUnactiveBtn {
         color: #318CFB;
         background-color: #fff;  
     }
@@ -86,15 +86,9 @@ ion-col {
         background-color: #318CFB !important;
     }
 }
-.hideCharts {
-    display: none;
-}
-.showCharts {
+.showCards, .showArray {
     display: block;
 }
-.hideArray {
+.hideCards, .hideArray {
     display: none;
-}
-.showArray {
-    display: block;
 }
