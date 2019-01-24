@@ -30,7 +30,6 @@ export class FavoritesPage {
   ionViewWillEnter(){ 
     this.BddProvider.afficher_favoris().then(liste_favoris => {
     this.movies = liste_favoris;
-    console.log(this.movies.length);
     this.movies.length > 0 ? this.isMovies = true : this.isMovies = false;
     })
   }

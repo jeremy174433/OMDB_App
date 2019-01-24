@@ -56,12 +56,12 @@ export class MoviePage {
   ngOnInit() {
     this.getMovieDetails().subscribe(
       (data: MovieDetails) => {
-        console.log(data.Response)
         this.moviedetails =
         { // we need to specify for each property the data to use
           Title: data['Title'],
           Year: data['Year'],
           Rated: data['Rated'],
+          Ratings: data['Ratings'],
           Released: data['Released'],
           Runtime: data['Runtime'],
           Genre: data['Genre'],
@@ -73,7 +73,7 @@ export class MoviePage {
           Country: data['Country'],
           Awards: data['Awards'],
           Poster: data['Poster'],
-          MetaScore: data['MetaScore'],
+          Metascore: data['Metascore'],
           imdbRating: data['imdbRating'],
           imdbVotes: data['imdbVotes'],
           imdbID: data['imdbID'],
@@ -85,6 +85,7 @@ export class MoviePage {
           Response: data['Response']
         }
         this.myAngularxQrCode = data['Website'];
+        console.log(this.moviedetails);
       },
       (error) => {
         console.log(error)
