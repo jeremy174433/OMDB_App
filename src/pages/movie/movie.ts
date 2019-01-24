@@ -56,7 +56,7 @@ export class MoviePage {
   ngOnInit() {
     this.getMovieDetails().subscribe(
       (data: MovieDetails) => {
-        console.log(data)
+        console.log(data.Response)
         this.moviedetails =
         { // we need to specify for each property the data to use
           Title: data['Title'],

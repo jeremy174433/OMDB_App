@@ -17,25 +17,23 @@ import {MoviePage} from "../movie/movie";
 })
 export class FavoritesPage {
 
-  movies = [];
+  movies: any = [];
+  isMovies: boolean = false;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams , private BddProvider: BddProvider) {
   }
 
   ngOnInit() {
-
-
   }
 
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad FavoritesPage');
+  ionViewWillEnter(){ 
+    this.BddProvider.afficher_favoris().then(liste_favoris => {
+    this.movies = liste_favoris;
+    console.log(this.movies.length);
+    this.movies.length > 0 ? this.isMovies = true : this.isMovies = false;
+    })
   }
-
-  ionViewWillEnter(){  this.BddProvider.afficher_favoris().then(liste_favoris => {
-    // @ts-ignore
-    this.movies = liste_favoris })}
 
   detailsMovies (movie) {
     this.navCtrl.push(MoviePage, {
@@ -43,7 +41,9 @@ export class FavoritesPage {
     });
   }
 
-  tout_supprimer(){this.BddProvider.tout_supprimer()
-  ; this.navCtrl.setRoot(this.navCtrl.getActive().component);}
+  tout_supprimer() {
+    this.BddProvider.tout_supprimer(); 
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
+  }
 
 }

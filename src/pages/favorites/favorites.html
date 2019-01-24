@@ -7,7 +7,7 @@
 <ion-header>
 
     <ion-navbar>
-      <ion-title>favorites</ion-title>
+      <ion-title>Favoris</ion-title>
     </ion-navbar>
   
   </ion-header>
@@ -18,13 +18,18 @@
       <ion-icon name="trash"></ion-icon>
       Supprimer tout les favoris !
     </button>
-    <ion-list>
-      <ion-item *ngFor="let movie of movies" (click)="detailsMovies(movie)">
-        <ion-thumbnail item-start>
-          <img src="{{movie.poster}}" alt="{{movie.title}}" title="{{movie.title}}">
-        </ion-thumbnail>
-        <h2>{{movie.title}}</h2>
-      </ion-item>
+    <ion-list #listMovies *ngIf="isMovies">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 *ngFor="let movie of movies" (click)="detailsMovies(movie)">
+            <ion-item class="itemCardMovie">
+              <ion-thumbnail item-start>
+                <img src="{{movie.poster}}" alt="{{movie.title}}" title="{{movie.title}}">
+              </ion-thumbnail>
+              <h2>{{movie.title}}</h2>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-list>
-  
   </ion-content>
