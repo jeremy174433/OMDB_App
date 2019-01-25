@@ -4,6 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { BddProvider } from "../../providers/bdd/bdd";
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 /**
  * Generated class for the MoviePage page.
@@ -35,7 +36,8 @@ export class MoviePage {
     private http: HttpClient,
     private BddProvider: BddProvider,
     private camera: Camera,
-    private alertCtrl : AlertController
+    private alertCtrl : AlertController,
+    private barcodeScanner: BarcodeScanner
     ) {
   }
 
@@ -103,6 +105,18 @@ export class MoviePage {
   public getMovieDetails(): Observable<MovieDetails> {
     return this.http.get<MovieDetails>
     ('http://www.omdbapi.com/?apikey=76b9cca4&i=' + this.navParams.get('id'))
+  }
+
+  scanQRCode() {
+    try {
+      this.barcodeScanner.scan().then(barcodeData => {
+        console.log('Barcode data', barcodeData);
+      }).catch(err => {
+        console.log('Error', err);
+      });
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   openCamera() {

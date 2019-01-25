@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { QRCodeModule } from 'angularx-qrcode';
 import { BddProvider } from '../providers/bdd/bdd';
 import { IonicStorageModule } from "@ionic/storage";
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { IonicStorageModule } from "@ionic/storage";
     Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BddProvider,
+    BarcodeScanner
   ]
 })
 export class AppModule {}
