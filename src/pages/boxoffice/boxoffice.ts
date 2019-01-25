@@ -26,7 +26,7 @@ export class BoxofficePage {
   // METHODS
   private getListMovies(): Observable<MovieBoxOffice> {
     return this.http.get<MovieBoxOffice>
-    ('https://api.themoviedb.org/3/discover/movie?api_key=0ea432d6c4053e8ee8a5574e79b0eaec&language=fr-FR&sort_by=revenue.desc&include_adult=false&include_video=false&page=1&primary_release_year=2018')
+    ('https://api.themoviedb.org/3/discover/movie?api_key=0ea432d6c4053e8ee8a5574e79b0eaec&language=fr-FR&sort_by=revenue.desc&include_adult=true&page=1&primary_release_year=2018')
   }
   private getDetailsMovies(id): Observable<MovieTMDBDetails> {
     return this.http.get<MovieTMDBDetails>
@@ -44,6 +44,7 @@ export class BoxofficePage {
             total_results: data['total_results'],
             total_pages: data['total_pages'],
           }
+          console.log(data);
           this.listMovies = this.listDiscoverMovies['results'];
           for(var c=0; c < this.listMovies.length; c++) {
             this.getDetailsMovies(this.listMovies[c].id).subscribe(

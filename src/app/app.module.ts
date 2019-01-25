@@ -11,7 +11,7 @@ import { FavoritesPage } from '../pages/favorites/favorites';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { Camera } from '@ionic-native/camera';
 import { MoviesProvider } from '../providers/movies/movies';
 import { HttpClientModule } from '@angular/common/http';
 import { QRCodeModule } from 'angularx-qrcode';
@@ -47,9 +47,9 @@ import { IonicStorageModule } from "@ionic/storage";
     StatusBar,
     SplashScreen,
     MoviesProvider,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BddProvider,
-    BarcodeScanner
   ]
 })
 export class AppModule {}
