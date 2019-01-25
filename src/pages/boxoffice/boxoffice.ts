@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef  } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
@@ -111,6 +111,7 @@ export class BoxofficePage {
   ngOnInit() {
     this.showCards = false;
     this.getMoviesData();
+    console.log(this.boxOffice);
   }
 
 }

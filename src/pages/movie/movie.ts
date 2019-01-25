@@ -84,7 +84,7 @@ export class MoviePage {
           Website: data['Website'],
           Response: data['Response']
         }
-        this.myAngularxQrCode = data['Website'];
+        this.myAngularxQrCode = data['imdbID'];
         console.log(this.moviedetails);
       },
       (error) => {
