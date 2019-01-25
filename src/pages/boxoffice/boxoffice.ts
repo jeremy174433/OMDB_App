@@ -10,7 +10,6 @@ import { MoviePage } from "../movie/movie";
   templateUrl: 'boxoffice.html',
 })
 export class BoxofficePage {
-  showCards: boolean;
   // DATA FROM API
   listDiscoverMovies: MovieBoxOffice;
   listMovies: any[];
@@ -93,15 +92,6 @@ export class BoxofficePage {
     })
   }
 
-
-  public displayCards() {
-    this.showCards = true;
-  }
-
-  public displayArray () {
-    this.showCards = false;
-  }
-
   public goToDetailsMovies (movie) {
     this.navCtrl.push(MoviePage, {
       id: movie.imdb_id
@@ -109,7 +99,6 @@ export class BoxofficePage {
   }
 
   ngOnInit() {
-    this.showCards = false;
     this.getMoviesData();
     console.log(this.boxOffice);
   }

@@ -58,37 +58,3 @@ table { // SOURCE: https://codepen.io/AllThingsSmitty/pen/MyqmdM
       }
     }
   }
-// MY CSS
-.tabSwitchArrCards { /* grid contains tabs for switch between array and charts */
-    padding: 0;
-    margin: 0;
-    ion-col { /* one tab */
-        padding: 0;
-        margin: 0;
-    }
-    ion-col:first-child {
-        button {
-            border-right: 2px solid white;
-        }
-    }
-}
-ion-col {
-    .arrayActiveBtn, .cardsActiveBtn {
-        background-color: #318CFB;
-        color: #fff;
-    }
-    .arrayUnactiveBtn, .cardsUnactiveBtn {
-        color: #318CFB;
-        background-color: #fff;  
-    }
-    button:hover {
-        color: #fff;
-        background-color: #318CFB !important;
-    }
-}
-.showCards, .showArray {
-    display: block;
-}
-.hideCards, .hideArray {
-    display: none;
-}
