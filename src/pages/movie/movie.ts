@@ -28,6 +28,7 @@ export class MoviePage {
   myPictures: string;
   show: boolean;
   scannedCode: BarcodeScanResult;
+  response: boolean = true;
 
   constructor(
     public navCtrl: NavController, 
@@ -86,6 +87,11 @@ export class MoviePage {
         }
         this.myAngularxQrCode = data['imdbID'];
         console.log(this.moviedetails);
+        if (this.moviedetails.Response === 'True') {
+          this.response = true;
+        } else {
+          this.response = false;
+        }
       },
       (error) => {
         console.log(error)
@@ -112,7 +118,6 @@ export class MoviePage {
   }
 
   ajout_en_bdd(MovieTitle , MoviePoster , MovieID) {
-    console.log(this.moviedetails);
     this.show = true; 
     this.BddProvider.ajout_en_bdd(MovieTitle , MoviePoster , MovieID);
   }

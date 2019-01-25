@@ -7,7 +7,8 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{moviedetails?.Title}}</ion-title>
+    <ion-title *ngIf="response">{{moviedetails?.Title}}</ion-title>
+    <ion-title *ngIf="!response">Erreur 404</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,7 +16,7 @@
 
 <ion-content>
 
-  <div>
+  <div *ngIf="response">
     <ion-thumbnail>
       <img src="{{moviedetails?.Poster}}" alt="{{moviedetails?.Title}}" title="{{moviedetails?.Title}}">
     </ion-thumbnail>
@@ -51,6 +52,9 @@
         Result from Scan: {{ scannedCode.text }}
       </ion-card-content>
     </ion-card>
+  </div>
+  <div *ngIf="!response">
+    <p>Aucun film ne correspond à cette id</p>
   </div>
 
 </ion-content>
