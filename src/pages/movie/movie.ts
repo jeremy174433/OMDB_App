@@ -111,6 +111,9 @@ export class MoviePage {
     try {
       this.barcodeScanner.scan().then(barcodeData => {
         console.log('Barcode data', barcodeData);
+        this.navCtrl.push(MoviePage, {
+          id: barcodeData.text
+        });
       }).catch(err => {
         console.log('Error', err);
       });
