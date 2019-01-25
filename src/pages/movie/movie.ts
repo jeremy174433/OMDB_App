@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams} from 'ionic-angular';
 import { HttpClient } from "@angular/common/http";
-import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Observable } from "rxjs/Observable";
-import {BddProvider} from "../../providers/bdd/bdd";
+import { BddProvider } from "../../providers/bdd/bdd";
+import { BarcodeScanner, BarcodeScannerOptions, BarcodeScanResult } from '@ionic-native/barcode-scanner/ngx';
 
 /**
  * Generated class for the MoviePage page.
@@ -27,14 +27,14 @@ export class MoviePage {
   public photos : any;
   myPictures: string;
   show: boolean;
+  scannedCode: BarcodeScanResult;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
-    private http: HttpClient, 
-    private camera: Camera, 
-    private alertCtrl : AlertController,
-    private BddProvider: BddProvider
+    private http: HttpClient,
+    private BddProvider: BddProvider,
+    private barcodeScanner: BarcodeScanner
     ) {
   }
 
@@ -99,38 +99,16 @@ export class MoviePage {
     ('http://www.omdbapi.com/?apikey=76b9cca4&i=' + this.navParams.get('id'))
   }
 
-  openCamera() {
-    let confirm = this.alertCtrl.create({
-      title: 'Open the camera ?',
-      message: '',
-      buttons: [
-        {
-          text: 'No',
-          handler: () => {
-            console.log('Disagree clicked');
-          }
-        }, {
-          text: 'Yes',
-          handler: () => {
-            console.log('Agree clicked');
-
-            const options: CameraOptions = {
-              quality: 100,
-              destinationType: this.camera.DestinationType.FILE_URI,
-              encodingType: this.camera.EncodingType.JPEG,
-              mediaType: this.camera.MediaType.PICTURE
-            }
-
-            this.camera.getPicture(options).then((imageData) => {
-              this.myPictures = 'data:image/jpeg;base64,' + imageData;
-            }, (err) => {
-              console.log(err);
-            });
-          }
-        }
-      ]
-    });
-    confirm.present();
+  async scanCode() {
+    try {
+      const options: BarcodeScannerOptions = {
+        prompt: 'Diriger votre caméra vers un QRCode',
+        torchOn: true
+      }
+      this.scannedCode = await this.barcodeScanner.scan(options);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   ajout_en_bdd(MovieTitle , MoviePoster , MovieID) {

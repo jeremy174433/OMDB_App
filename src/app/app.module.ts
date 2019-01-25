@@ -11,12 +11,12 @@ import { FavoritesPage } from '../pages/favorites/favorites';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { Camera } from '@ionic-native/camera';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { MoviesProvider } from '../providers/movies/movies';
 import { HttpClientModule } from '@angular/common/http';
 import { QRCodeModule } from 'angularx-qrcode';
 import { BddProvider } from '../providers/bdd/bdd';
-import {IonicStorageModule} from "@ionic/storage";
+import { IonicStorageModule } from "@ionic/storage";
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import {IonicStorageModule} from "@ionic/storage";
     HomePage,
     TabsPage,
     MoviePage,
-    FavoritesPage
+    FavoritesPage,
   ],
   imports: [
     BrowserModule,
@@ -47,9 +47,9 @@ import {IonicStorageModule} from "@ionic/storage";
     StatusBar,
     SplashScreen,
     MoviesProvider,
-    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    BddProvider
+    BddProvider,
+    BarcodeScanner
   ]
 })
 export class AppModule {}
