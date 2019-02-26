@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams} from 'ionic-angular';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { BddProvider } from "../../providers/bdd/bdd";
-import { Camera, CameraOptions } from '@ionic-native/camera';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 /**
@@ -35,8 +34,6 @@ export class MoviePage {
     public navParams: NavParams, 
     private http: HttpClient,
     private BddProvider: BddProvider,
-    private camera: Camera,
-    private alertCtrl : AlertController,
     private barcodeScanner: BarcodeScanner
     ) {
   }
@@ -119,43 +116,6 @@ export class MoviePage {
       });
     } catch (error) {
       console.log(error)
-    }
-  }
-
-  openCamera() {
-    try {
-      let confirm = this.alertCtrl.create({
-        title: 'Open the camera ?',
-        message: '',
-        buttons: [
-          {
-            text: 'No',
-            handler: () => {
-              console.log('Disagree clicked');
-            }
-          }, 
-          {
-            text: 'Yes',
-            handler: () => {
-              console.log('Agree clicked');
-              const options: CameraOptions = {
-                quality: 100,
-                destinationType: this.camera.DestinationType.FILE_URI,
-                encodingType: this.camera.EncodingType.JPEG,
-                mediaType: this.camera.MediaType.PICTURE
-              }
-              this.camera.getPicture(options).then((imageData) => {
-                this.myPictures = 'data:image/jpeg;base64,' + imageData;
-              }, (err) => {
-                console.log(err);
-              });
-            }
-          }
-        ]
-      });
-      confirm.present();
-    } catch (error) {
-      console.log(error);
     }
   }
 
