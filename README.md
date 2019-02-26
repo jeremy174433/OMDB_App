@@ -1,7 +1,7 @@
 # OMDB_TP
 Todo :
 
-Unsubscribe (vérifier via mémoire dans inspecter l'élément) 
+<span style="color: red;">Unsubscribe (vérifier via mémoire dans inspecter l'élément)</span>
 <br />
 Enlever unsubscribe pour pipe async.
 <br />
