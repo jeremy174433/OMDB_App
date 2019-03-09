@@ -22,3 +22,5 @@ Todo 17/03/2019 :
 ✅ Dans le HTML mettre les attributs entre crochets []. Exemple : [src]="movie.Poster" au lieu de src="{{movie.Poster}}"
 <br />
 ❌ Mise en place d'un skeleton
+<br />
+❌ Créer un fichier qui contiendra la globalité des valeurs en brut
