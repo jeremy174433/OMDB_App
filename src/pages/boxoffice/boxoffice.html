@@ -27,7 +27,7 @@
       <tbody>
         <tr *ngFor="let movieRevenue of boxOffice" (click)="goToDetailsMovies(movieRevenue)">
           <td scope="row" data-label="Nom">{{movieRevenue.title}}</td>
-          <td data-label="Budget">{{movieRevenue.budget | currency}}</td> 
+          <td data-label="Budget">{{mgitovieRevenue.budget | currency}}</td> 
           <td data-label="Revenue">{{movieRevenue.revenue | currency}}</td>
           <td data-label="Bénéfice">{{ movieRevenue.revenue - movieRevenue.budget | currency}}</td>
         </tr>

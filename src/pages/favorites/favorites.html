@@ -14,7 +14,7 @@
   
   
   <ion-content padding>
-    <button  ion-button icon-start color="danger"  (click)="tout_supprimer()">
+    <button ion-button icon-start color="danger" (click)="tout_supprimer()">
       <ion-icon name="trash"></ion-icon>
       Supprimer tout les favoris !
     </button>
@@ -24,7 +24,7 @@
           <ion-col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 *ngFor="let movie of movies" (click)="detailsMovies(movie)">
             <ion-item class="itemCardMovie">
               <ion-thumbnail item-start>
-                <img src="{{movie.poster}}" alt="{{movie.title}}" title="{{movie.title}}">
+                <img [src]="movie.poster" [alt]="movie.title" [title]="movie.title">
               </ion-thumbnail>
               <h2>{{movie.title}}</h2>
             </ion-item>
