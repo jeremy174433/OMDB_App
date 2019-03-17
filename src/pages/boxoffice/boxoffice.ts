@@ -26,7 +26,7 @@ export class BoxofficePage {
   // METHODS
   private getListMovies(): Observable<TheMovieDBMovie> {
     return this.http.get<TheMovieDBMovie>
-    ('https://api.themoviedb.org/3/discover/movie?api_key=0ea432d6c4053e8ee8a5574e79b0eaec&language=fr-FR&sort_by=revenue.desc&include_adult=true&page=1&primary_release_year=2018')
+    ('https://api.themoviedb.org/3/discover/movie?api_key=0ea432d6c4053e8ee8a5574e79b0eaec&language=fr-FR&sort_by=revenue.desc&include_adult=true&page=1&primary_release_year=2019')
   }
   private getDetailsMovies(id): Observable<MovieTMDBDetails> {
     return this.http.get<MovieTMDBDetails>
@@ -77,6 +77,7 @@ export class BoxofficePage {
                   vote_count: data['vote_count'] 
                 }
                 this.boxOffice.push(this.detailsMovie)
+                this.boxOffice.sort(this.SortByBenefice)
               },
               (err) => {
                 console.log(err)
@@ -103,5 +104,13 @@ export class BoxofficePage {
     this.getMoviesData();
     console.log(this.boxOffice);
   }
+
+  SortByBenefice(a,b){
+    var x = a.revenue - a.budget ;
+    var y = b.revenue - b.budget ;
+    return ((x < y ) ? 1 : ((x > y ) ? -1 : 0));
+  }
+
+
 
 }
