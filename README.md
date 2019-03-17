@@ -13,7 +13,7 @@ Todo 17/03/2019 :
 <br />
 ❌ Gérer le retour sur le scan du QR-Code (Smartphone)
 <br />
-❌ Trier les films du box office par bénéfice
+✅ Trier les films du box office par bénéfice
 <br />
 ✅ Espacement des caractères du budget + passage en monnaie $
 <br />
