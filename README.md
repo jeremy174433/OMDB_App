@@ -9,7 +9,7 @@ Todo 17/03/2019 :
 <br />
 ❌ Enlever (data => { ... }) 
 <br />
-❌ Infinite scroll sur la homepage
+✅ Infinite scroll sur la homepage
 <br />
 ❌ Gérer le retour sur le scan du QR-Code (Smartphone)
 <br />
