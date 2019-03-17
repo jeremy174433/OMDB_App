@@ -11,7 +11,7 @@ import { MoviePage } from "../movie/movie";
 })
 export class BoxofficePage {
   // DATA FROM API
-  listDiscoverMovies: MovieBoxOffice;
+  listDiscoverMovies: TheMovieDBMovie;
   listMovies: any[];
   detailsMovie: MovieTMDBDetails;
   boxOffice = [];
@@ -24,8 +24,8 @@ export class BoxofficePage {
   }
 
   // METHODS
-  private getListMovies(): Observable<MovieBoxOffice> {
-    return this.http.get<MovieBoxOffice>
+  private getListMovies(): Observable<TheMovieDBMovie> {
+    return this.http.get<TheMovieDBMovie>
     ('https://api.themoviedb.org/3/discover/movie?api_key=0ea432d6c4053e8ee8a5574e79b0eaec&language=fr-FR&sort_by=revenue.desc&include_adult=true&page=1&primary_release_year=2018')
   }
   private getDetailsMovies(id): Observable<MovieTMDBDetails> {
@@ -36,7 +36,7 @@ export class BoxofficePage {
   private getMoviesData() {
     return new Promise((resolve, reject) => {
       this.getListMovies().subscribe(
-        (data: MovieBoxOffice) => {
+        (data: TheMovieDBMovie) => {
           this.listDiscoverMovies =
           { // we need to specify for each property the data to use
             page: data['page'],

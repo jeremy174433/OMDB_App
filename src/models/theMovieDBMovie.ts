@@ -1,4 +1,4 @@
-interface MovieBoxOffice {
+interface TheMovieDBMovie {
     page: number,
     results: [
         { poster_path: string },

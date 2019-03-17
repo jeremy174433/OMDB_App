@@ -17,6 +17,7 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { BddProvider } from '../providers/bdd/bdd';
 import { IonicStorageModule } from "@ionic/storage";
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { TheMovieDbProvider } from '../providers/the-movie-db/the-movie-db';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
     MoviesProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BddProvider,
-    BarcodeScanner
+    BarcodeScanner,
+    TheMovieDbProvider
   ]
 })
 export class AppModule {}

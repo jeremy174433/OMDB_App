@@ -6,19 +6,22 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { MoviePage } from "../movie/movie";
 import { MoviesProvider } from "../../providers/movies/movies";
+import { TheMovieDbProvider} from "../../providers/the-movie-db/the-movie-db";
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+
+  MovieUpComing: TheMovieDBMovie[] = [] ;
   isMovies: boolean;
   searchApi: string = '';
   apiKey: string = '';
   movies = [];
   private inputSearch = new FormControl();
 
-  constructor(public navCtrl: NavController, private http: HttpClient, private MoviesProvider: MoviesProvider) {
+  constructor(public navCtrl: NavController, private http: HttpClient, private MoviesProvider: MoviesProvider , private TheMovieDbProvider: TheMovieDbProvider) {
 
   }
 
@@ -31,6 +34,8 @@ export class HomePage {
       id: movie.imdbID
     });
   }
+
+
 
   ngOnInit() {
     this.isMovies = false;
@@ -65,4 +70,27 @@ export class HomePage {
       }
     ).closed
   }
+
+  ionViewWillEnter(){
+    // @ts-ignore
+    this.TheMovieDbProvider.page(1) ;
+    // @ts-ignore
+    this.TheMovieDbProvider.GetUpcomingMovie().then(value => this.MovieUpComing = value.results ) ;
+  }
+
+  ionViewWillLeave(){this.TheMovieDbProvider.UnsubscribeAll()}
+
+
+
+  doInfinite(): Promise<any> {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        // @ts-ignore
+        this.TheMovieDbProvider.GetOtherUpcomingMovie().then(value => value.results.forEach(value => this.MovieUpComing.push(value)));
+        resolve();
+      }, 500);
+    })
+  }
+
+
 }

@@ -32,8 +32,20 @@
     </ion-grid>
   </ion-list>
 
-  <!--<div #divNoMovie *ngIf="!isMovies">
-    <p>Il n'y a aucun film correspondant à cette recherche</p>
-  </div>-->
+  <div #divNoMovie *ngIf="!isMovies">
+    <ion-title> Prochainement dans vos salles ! </ion-title>
+    <ion-list>
+      <ion-item *ngFor="let movie of MovieUpComing">
+        <b> {{movie.title}}</b>
+        <h3> date de sortie : {{movie.release_date }} </h3>
+        <h2 style="white-space: normal;"> Résumé :{{  movie.overview}} </h2>
+      </ion-item>
+    </ion-list>
+
+    <ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite())">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+  </div>
 
 </ion-content>
